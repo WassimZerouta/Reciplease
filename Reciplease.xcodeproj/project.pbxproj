@@ -24,6 +24,7 @@
 		57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57739B9E29AFAF030011151F /* CoreDataStack.swift */; };
 		57975C1229B88F7000CA3416 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1129B88F7000CA3416 /* Favorite.swift */; };
 		57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */; };
+		57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */; };
 		57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		57739B9E29AFAF030011151F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		57975C1129B88F7000CA3416 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
+		57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
 		57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				57739B9E29AFAF030011151F /* CoreDataStack.swift */,
 				57975C1129B88F7000CA3416 /* Favorite.swift */,
 				570A198C29A27D8200A8D839 /* Recipe.swift */,
+				57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */,
 				57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */,
 			);
 			path = CoreData;
@@ -213,6 +216,7 @@
 			files = (
 				57739B9D29AFAC520011151F /* Reciplease.xcdatamodeld in Sources */,
 				5765147B29AAAADE00D43693 /* DetailsRecipeViewController.swift in Sources */,
+				57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */,
 				57975C1229B88F7000CA3416 /* Favorite.swift in Sources */,
 				57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */,
 				57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */,
