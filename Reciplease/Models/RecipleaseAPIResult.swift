@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct RecipleaseAPIResult: Decodable {
     
@@ -20,17 +21,8 @@ struct Hits: Decodable {
 struct Recipes: Decodable {
     var label: String
     var image: String
-    var images: Images
     var ingredientLines: [String]
     var ingredients: [Ingredients]
-}
-
-struct Images: Decodable {
-    var REGULAR: Regular
-}
-
-struct Regular: Decodable {
-    var url: String
 }
 
 struct Ingredients: Decodable {
