@@ -8,6 +8,6 @@
 import Foundation
 import CoreData
 
-final class RecipeRepository {
+final class FavoriteRepository {
     
 }

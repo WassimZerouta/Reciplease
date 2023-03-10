@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 class DetailsRecipeViewController: UIViewController {
     
@@ -20,57 +21,45 @@ class DetailsRecipeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var label = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        recipeImage.image = UIImage(data: imageData) ?? UIImage(named: "Spaghetti-bolognaise")
+        getImage()
         recipeLabel.text = recipe.label
+      
     }
     
 
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
-    
-        if favoriteBarButton.tintColor == UIColor.white {
-            favoriteBarButton.tintColor = UIColor.systemGreen
-            _ = favoriteRecipe(isFavorite: true)
-        }
-        else {
-            favoriteBarButton.tintColor = UIColor.white
-            _ = favoriteRecipe(isFavorite: false)
-        }
+    saveRecipe()
     }
     
-    func transformIngredient(ingredients: [Ingredients]) -> [Ingredient] {
-        var ingredientArray = [Ingredient]()
-        ingredients.forEach { ingredients in
-          var ingredient = Ingredient(context: CoreDataStack.shared.viewContext)
-            ingredient.food = ingredients.food
-            ingredientArray.append(ingredient)
-        }
-        return ingredientArray
+    
+    func saveRecipe() {
+        
+            let image = self.recipe.image
+            let recipeLabel = self.recipe.label
+            let ingredients =  self.recipe.ingredients
+            let ingredientLines = self.recipe.ingredientLines
+        
+        RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines)
     }
     
-    func favoriteRecipe(isFavorite: Bool) -> Bool {
-        let recipe =  Recipe(context: CoreDataStack.shared.viewContext)
-        recipe.image = self.recipe.image
-        recipe.recipeLabel = self.recipe.label
-        recipe.ingredients = transformIngredient(ingredients: self.recipe.ingredients)
-        recipe.ingredientLines = self.recipe.ingredientLines
-        var isFavorite = isFavorite == true ? false : true
-        
-        do {
-            try CoreDataStack.shared.viewContext.save()
+    func getImage() {
+        AF.request(  recipe.image ,method: .get).response{ response in
+            switch response.result {
+            case .success(let responseData):
+                
+                self.recipeImage.image = UIImage(data: responseData!) ?? UIImage(named: "Spaghetti-bolognaise")
+                
+                
+            case .failure(let error):
+                print(error)
+            }
         }
-        catch {
-            print("we were enable to save \(self.recipe.label)")
-        }
-        
-        if isFavorite == false {
-            CoreDataStack.shared.viewContext.delete(recipe)
-        }
-        
-        return isFavorite
     }
     
 }

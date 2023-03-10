@@ -19,5 +19,11 @@ class RecipeTableViewCell: UITableViewCell {
         titleLabel.text = title
         ingredientsLabel.text = ingredients
     }
+    
+    override func prepareForReuse() {
+        recipeImage.image = UIImage(named: "Spaghetti-bolognaise")
+        titleLabel.text = ""
+        ingredientsLabel.text = ""
+       }
 
 }

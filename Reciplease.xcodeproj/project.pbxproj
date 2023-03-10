@@ -11,7 +11,6 @@
 		570A198629A27A1A00A8D839 /* RecipleaseAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A198529A27A1A00A8D839 /* RecipleaseAPIHelper.swift */; };
 		570A198829A27A3200A8D839 /* RecipleaseAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A198729A27A3200A8D839 /* RecipleaseAPIResult.swift */; };
 		570A198B29A27BD100A8D839 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 570A198A29A27BD100A8D839 /* Alamofire */; };
-		570A198D29A27D8200A8D839 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A198C29A27D8200A8D839 /* Recipe.swift */; };
 		574709FF299FD2810078611A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574709FE299FD2810078611A /* AppDelegate.swift */; };
 		57470A01299FD2810078611A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A00299FD2810078611A /* SceneDelegate.swift */; };
 		57470A03299FD2810078611A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A02299FD2810078611A /* SearchViewController.swift */; };
@@ -20,11 +19,15 @@
 		57470A0E299FD2850078611A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57470A0C299FD2850078611A /* LaunchScreen.storyboard */; };
 		57470A19299FDA7F0078611A /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A18299FDA7F0078611A /* FavoriteViewController.swift */; };
 		5765147B29AAAADE00D43693 /* DetailsRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765147A29AAAADE00D43693 /* DetailsRecipeViewController.swift */; };
-		57739B9D29AFAC520011151F /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57739B9B29AFAC520011151F /* Reciplease.xcdatamodeld */; };
 		57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57739B9E29AFAF030011151F /* CoreDataStack.swift */; };
 		57975C1229B88F7000CA3416 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1129B88F7000CA3416 /* Favorite.swift */; };
 		57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */; };
 		57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */; };
+		57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */; };
+		57A70E6D29BB5AE60062E9AD /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */; };
+		57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */; };
+		57B3F03E29BB4D300037F9B9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3F03D29BB4D300037F9B9 /* Recipe.swift */; };
+		57B468E029B941A6006BC514 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57B468DE29B941A6006BC514 /* Reciplease.xcdatamodeld */; };
 		57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +35,6 @@
 		5708D96229A2AE4E00D463A9 /* RecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewController.swift; sourceTree = "<group>"; };
 		570A198529A27A1A00A8D839 /* RecipleaseAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseAPIHelper.swift; sourceTree = "<group>"; };
 		570A198729A27A3200A8D839 /* RecipleaseAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseAPIResult.swift; sourceTree = "<group>"; };
-		570A198C29A27D8200A8D839 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		574709FB299FD2810078611A /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		574709FE299FD2810078611A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57470A00299FD2810078611A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,11 +45,15 @@
 		57470A0F299FD2850078611A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57470A18299FDA7F0078611A /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		5765147A29AAAADE00D43693 /* DetailsRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRecipeViewController.swift; sourceTree = "<group>"; };
-		57739B9C29AFAC520011151F /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		57739B9E29AFAF030011151F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		57975C1129B88F7000CA3416 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
+		57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIngredients.swift; sourceTree = "<group>"; };
+		57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
+		57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCoreDataIngredients.swift; sourceTree = "<group>"; };
+		57B3F03D29BB4D300037F9B9 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		57B468DF29B941A6006BC514 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,12 +133,15 @@
 		57739B9A29AFAC150011151F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				57739B9B29AFAC520011151F /* Reciplease.xcdatamodeld */,
+				57B468DE29B941A6006BC514 /* Reciplease.xcdatamodeld */,
 				57739B9E29AFAF030011151F /* CoreDataStack.swift */,
 				57975C1129B88F7000CA3416 /* Favorite.swift */,
-				570A198C29A27D8200A8D839 /* Recipe.swift */,
 				57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */,
 				57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */,
+				57B3F03D29BB4D300037F9B9 /* Recipe.swift */,
+				57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */,
+				57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */,
+				57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -214,21 +223,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57739B9D29AFAC520011151F /* Reciplease.xcdatamodeld in Sources */,
 				5765147B29AAAADE00D43693 /* DetailsRecipeViewController.swift in Sources */,
+				57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */,
 				57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */,
 				57975C1229B88F7000CA3416 /* Favorite.swift in Sources */,
 				57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */,
 				57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */,
+				57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */,
+				57A70E6D29BB5AE60062E9AD /* CoreDataRecipe.swift in Sources */,
 				57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */,
 				57470A03299FD2810078611A /* SearchViewController.swift in Sources */,
 				574709FF299FD2810078611A /* AppDelegate.swift in Sources */,
 				570A198829A27A3200A8D839 /* RecipleaseAPIResult.swift in Sources */,
 				5708D96329A2AE4E00D463A9 /* RecipesTableViewController.swift in Sources */,
 				57470A01299FD2810078611A /* SceneDelegate.swift in Sources */,
+				57B468E029B941A6006BC514 /* Reciplease.xcdatamodeld in Sources */,
 				57470A19299FDA7F0078611A /* FavoriteViewController.swift in Sources */,
 				570A198629A27A1A00A8D839 /* RecipleaseAPIHelper.swift in Sources */,
-				570A198D29A27D8200A8D839 /* Recipe.swift in Sources */,
+				57B3F03E29BB4D300037F9B9 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,12 +477,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		57739B9B29AFAC520011151F /* Reciplease.xcdatamodeld */ = {
+		57B468DE29B941A6006BC514 /* Reciplease.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				57739B9C29AFAC520011151F /* Reciplease.xcdatamodel */,
+				57B468DF29B941A6006BC514 /* Reciplease.xcdatamodel */,
 			);
-			currentVersion = 57739B9C29AFAC520011151F /* Reciplease.xcdatamodel */;
+			currentVersion = 57B468DF29B941A6006BC514 /* Reciplease.xcdatamodel */;
 			path = Reciplease.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
