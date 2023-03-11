@@ -16,7 +16,6 @@ class SearchViewController: UIViewController {
     var recipeArray = [Hits]()
     let identifier = "showRecipes"
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -66,9 +65,9 @@ class SearchViewController: UIViewController {
         ingredient.removeAll { Character in
             Character == ","
         }
-        var array = ingredient.components(separatedBy: " ")
+        let array = ingredient.components(separatedBy: " ")
         ingredient = array.joined(separator: "%20+")
-        var ingredients = "&q=\(ingredient)"
+        let ingredients = "&q=\(ingredient)"
         return ingredients
     }
 }

@@ -23,16 +23,17 @@ final class RecipeRepository {
          let recipes = try coreDataStack.viewContext.fetch(request)
          completion(recipes)
        } catch {
-           print(request)
+           print("error")
          completion([])
        }
     }
 
 
-    func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String]) {
+    func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) {
        let recipe = Recipe(context: coreDataStack.viewContext)
         recipe.image = image
         recipe.recipeLabel = recipeLabel
+        recipe.isFavorite = isFavorite
         var coreDataIngredients = recipe.coreDataIngredients as! Set<CoreDataIngredients>
         coreDataIngredients = transformIngredient(ingredients: ingredients)
         recipe.ingredientLines = ingredientLines

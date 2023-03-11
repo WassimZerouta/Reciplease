@@ -21,6 +21,7 @@ extension Recipe {
     @NSManaged public var ingredientLines: [String]?
     @NSManaged public var recipeLabel: String?
     @NSManaged public var coreDataIngredients: NSSet?
+    @NSManaged public var isFavorite: Bool
 
 }
 

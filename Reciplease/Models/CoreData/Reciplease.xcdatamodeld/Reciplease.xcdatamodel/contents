@@ -7,6 +7,7 @@
     <entity name="Recipe" representedClassName=".Recipe" syncable="YES">
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="ingredientLines" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="recipeLabel" optional="YES" attributeType="String"/>
         <relationship name="coreDataIngredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CoreDataIngredients"/>
     </entity>

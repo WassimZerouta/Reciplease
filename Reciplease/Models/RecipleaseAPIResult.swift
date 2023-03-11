@@ -23,6 +23,7 @@ struct Recipes: Decodable {
     var image: String
     var ingredientLines: [String]
     var ingredients: [Ingredients]
+    
 }
 
 struct Ingredients: Decodable {

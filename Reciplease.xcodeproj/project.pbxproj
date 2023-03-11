@@ -20,9 +20,7 @@
 		57470A19299FDA7F0078611A /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A18299FDA7F0078611A /* FavoriteViewController.swift */; };
 		5765147B29AAAADE00D43693 /* DetailsRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765147A29AAAADE00D43693 /* DetailsRecipeViewController.swift */; };
 		57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57739B9E29AFAF030011151F /* CoreDataStack.swift */; };
-		57975C1229B88F7000CA3416 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1129B88F7000CA3416 /* Favorite.swift */; };
 		57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */; };
-		57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */; };
 		57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */; };
 		57A70E6D29BB5AE60062E9AD /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */; };
 		57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */; };
@@ -46,9 +44,7 @@
 		57470A18299FDA7F0078611A /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		5765147A29AAAADE00D43693 /* DetailsRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsRecipeViewController.swift; sourceTree = "<group>"; };
 		57739B9E29AFAF030011151F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		57975C1129B88F7000CA3416 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
-		57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRepository.swift; sourceTree = "<group>"; };
 		57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIngredients.swift; sourceTree = "<group>"; };
 		57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
 		57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCoreDataIngredients.swift; sourceTree = "<group>"; };
@@ -135,8 +131,6 @@
 			children = (
 				57B468DE29B941A6006BC514 /* Reciplease.xcdatamodeld */,
 				57739B9E29AFAF030011151F /* CoreDataStack.swift */,
-				57975C1129B88F7000CA3416 /* Favorite.swift */,
-				57975C1529B8CF7500CA3416 /* FavoriteRepository.swift */,
 				57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */,
 				57B3F03D29BB4D300037F9B9 /* Recipe.swift */,
 				57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */,
@@ -225,8 +219,6 @@
 			files = (
 				5765147B29AAAADE00D43693 /* DetailsRecipeViewController.swift in Sources */,
 				57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */,
-				57975C1629B8CF7500CA3416 /* FavoriteRepository.swift in Sources */,
-				57975C1229B88F7000CA3416 /* Favorite.swift in Sources */,
 				57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */,
 				57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */,
 				57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */,

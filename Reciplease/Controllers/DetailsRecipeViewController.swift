@@ -29,23 +29,37 @@ class DetailsRecipeViewController: UIViewController {
         tableView.dataSource = self
         getImage()
         recipeLabel.text = recipe.label
-      
+        getFavoriteArray()
     }
     
 
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
     saveRecipe()
+    
+    
+    }
+    
+    func getFavoriteArray() {
+        RecipeRepository().getRecipes { favoriteArray in
+            for i in 0..<favoriteArray.count {
+                if (favoriteArray[i].isFavorite && (favoriteArray[i].recipeLabel == recipe.label)) {
+                    favoriteBarButton.tintColor = UIColor.systemGreen
+                }
+            }
+ 
+        }
     }
     
     
     func saveRecipe() {
-        
+        favoriteBarButton.tintColor = UIColor.systemGreen
             let image = self.recipe.image
             let recipeLabel = self.recipe.label
             let ingredients =  self.recipe.ingredients
             let ingredientLines = self.recipe.ingredientLines
+            
         
-        RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines)
+        RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines, isFavorite: true)
     }
     
     func getImage() {
