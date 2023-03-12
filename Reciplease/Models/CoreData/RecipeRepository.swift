@@ -10,7 +10,7 @@ import CoreData
 
 final class RecipeRepository {
     
-    private let coreDataStack: CoreDataStack
+    let coreDataStack: CoreDataStack
 
     init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
       self.coreDataStack = coreDataStack
@@ -45,6 +45,17 @@ final class RecipeRepository {
          print("We were unable to save \(recipeLabel)")
        }
     }
+    
+    func deleteRecipes(recipe: Recipe, completion: ((Bool) -> Void)?) {
+         coreDataStack.viewContext.delete(recipe)
+        do {
+          try coreDataStack.viewContext.save()
+        } catch {
+          print("ERROR: \(error)")
+        }
+    }
+    
+    
     
     private  func transformIngredient(ingredients: [Ingredients]) -> Set<CoreDataIngredients> {
         var ingredientArray = Set<CoreDataIngredients>()

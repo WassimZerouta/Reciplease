@@ -35,6 +35,7 @@ class RecipesTableViewController: UITableViewController {
     private func getFavoriteArray() {
         RecipeRepository().getRecipes { favoriteArray in
             self.favoriteArray = favoriteArray
+            print(favoriteArray)
         }
     }
     
@@ -50,6 +51,8 @@ class RecipesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell {
+            
+            // Display recipeArray data if its from SearchViewController, or favoriteArray
             if recipeArray.isEmpty {ingredientsLines = favoriteArray[indexPath.row].ingredientLines ?? [""] } else {ingredientsLines = recipeArray[indexPath.row].recipe.ingredientLines }
             
             var ingredientsArray = [String]()
@@ -99,25 +102,27 @@ class RecipesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let nextController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailsRecipeViewController {
             if recipeArray.isEmpty {
+                // Send Recipes Object from favoriteArray to the nextController
                 let recipe = Recipes(label: favoriteArray[indexPath.row].recipeLabel ?? "", image: favoriteArray[indexPath.row].image! , ingredientLines: favoriteArray[indexPath.row].ingredientLines ?? [], ingredients: RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoriteArray[indexPath.row].coreDataIngredients as! Set<CoreDataIngredients>) )
                 nextController.recipe = recipe
                 self.navigationController?.pushViewController(nextController, animated: true)
                 
             }
             else {
+                // Send Recipes Object from recipeArray to the nextController
                 let recipe = Recipes(label: recipeArray[indexPath.row].recipe.label, image: recipeArray[indexPath.row].recipe.image , ingredientLines: recipeArray[indexPath.row].recipe.ingredientLines, ingredients: recipeArray[indexPath.row].recipe.ingredients)
                 nextController.label = recipeArray[indexPath.row].recipe.label
                 nextController.recipe = recipe
-                nextController.imageData = imageData
                 
                 for i in 0..<favoriteArray.count {
-                    print(favoriteArray)
+                    // If its favoritesRecipe,  send the recipeObject, to delete it if neccessary and color the star in green
                     if favoriteArray[i].isFavorite && (favoriteArray[i].recipeLabel == recipeArray[indexPath.row].recipe.label) {
                         nextController.favoriteBarButton.tintColor = UIColor.systemGreen
+                        nextController.favoriteRecipe = favoriteArray[i]
+                        
                     }
                 }
                 
-
                 self.navigationController?.pushViewController(nextController, animated: true)
             }
         }
