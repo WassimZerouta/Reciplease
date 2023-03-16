@@ -27,6 +27,19 @@ final class RecipeRepository {
          completion([])
        }
     }
+    
+    func getIngredient() -> String {
+       let request: NSFetchRequest<CoreDataIngredients> = CoreDataIngredients.fetchRequest()
+        request.returnsObjectsAsFaults = false
+       do {
+         let coreDataIngredients = try coreDataStack.viewContext.fetch(request)
+           return coreDataIngredients[0].food!
+       } catch {
+           print("error")
+         return ""
+       }
+    }
+    
 
 
     func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) {
@@ -34,8 +47,7 @@ final class RecipeRepository {
         recipe.image = image
         recipe.recipeLabel = recipeLabel
         recipe.isFavorite = isFavorite
-        var coreDataIngredients = recipe.coreDataIngredients as! Set<CoreDataIngredients>
-        coreDataIngredients = transformIngredient(ingredients: ingredients)
+        recipe.coreDataIngredients = transformIngredient(ingredients: ingredients) as NSSet
         recipe.ingredientLines = ingredientLines
 
        do {
@@ -46,10 +58,11 @@ final class RecipeRepository {
        }
     }
     
-    func deleteRecipes(recipe: Recipe, completion: ((Bool) -> Void)?) {
+    func deleteRecipes(recipe: Recipe) {
          coreDataStack.viewContext.delete(recipe)
         do {
           try coreDataStack.viewContext.save()
+            print("OKOK")
         } catch {
           print("ERROR: \(error)")
         }

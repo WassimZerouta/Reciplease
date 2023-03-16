@@ -22,21 +22,16 @@ class DetailsRecipeViewController: UIViewController {
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var label = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         getImage()
         recipeLabel.text = recipe.label
-        getFavoriteArray()
         
         if favoriteRecipe.recipeLabel == nil {
             // TO DO : Implement deleteRecipe(), the call it here
-            RecipeRepository().deleteRecipes(recipe: favoriteRecipe) { ok in
-              print("Ok")
-            }
+            RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
         }
 
     }
@@ -44,13 +39,16 @@ class DetailsRecipeViewController: UIViewController {
 
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
         if favoriteRecipe.isFavorite == true {
-            favoriteBarButton.tintColor = UIColor.systemYellow
-            // TO DO : Implement deleteRecipe(), the call it here
-            RecipeRepository().deleteRecipes(recipe: favoriteRecipe) { ok in
-              print("Ok")
-            }
+            favoriteBarButton.tintColor = UIColor.white
+            // TO DO : Implement deleteRecipe(), then call it here
+            favoriteRecipe.isFavorite = false
+            RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
+            
+        
         }
         else {
+            favoriteBarButton.tintColor = UIColor.systemGreen
+            favoriteRecipe.isFavorite = true
             saveRecipe()
         }
     

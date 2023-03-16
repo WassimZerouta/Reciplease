@@ -22,8 +22,6 @@
 		57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57739B9E29AFAF030011151F /* CoreDataStack.swift */; };
 		57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */; };
 		57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */; };
-		57A70E6D29BB5AE60062E9AD /* CoreDataRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */; };
-		57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */; };
 		57B3F03E29BB4D300037F9B9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3F03D29BB4D300037F9B9 /* Recipe.swift */; };
 		57B468E029B941A6006BC514 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57B468DE29B941A6006BC514 /* Reciplease.xcdatamodeld */; };
 		57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */; };
@@ -46,8 +44,6 @@
 		57739B9E29AFAF030011151F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIngredients.swift; sourceTree = "<group>"; };
-		57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRecipe.swift; sourceTree = "<group>"; };
-		57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCoreDataIngredients.swift; sourceTree = "<group>"; };
 		57B3F03D29BB4D300037F9B9 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		57B468DF29B941A6006BC514 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		57C9F54D29A8096A006471F2 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -134,8 +130,6 @@
 				57975C1329B8CA1E00CA3416 /* RecipeRepository.swift */,
 				57B3F03D29BB4D300037F9B9 /* Recipe.swift */,
 				57A70E6A29BB4F9D0062E9AD /* CoreDataIngredients.swift */,
-				57A70E6C29BB5AE60062E9AD /* CoreDataRecipe.swift */,
-				57A70E6E29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -221,8 +215,6 @@
 				57A70E6B29BB4F9D0062E9AD /* CoreDataIngredients.swift in Sources */,
 				57975C1429B8CA1E00CA3416 /* RecipeRepository.swift in Sources */,
 				57C9F54E29A8096A006471F2 /* RecipeTableViewCell.swift in Sources */,
-				57A70E6F29BB5D2F0062E9AD /* ExtCoreDataIngredients.swift in Sources */,
-				57A70E6D29BB5AE60062E9AD /* CoreDataRecipe.swift in Sources */,
 				57739B9F29AFAF030011151F /* CoreDataStack.swift in Sources */,
 				57470A03299FD2810078611A /* SearchViewController.swift in Sources */,
 				574709FF299FD2810078611A /* AppDelegate.swift in Sources */,

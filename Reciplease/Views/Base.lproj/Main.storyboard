@@ -156,13 +156,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" alpha="0.5" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="AlV-tG-fij">
-                                            <rect key="frame" x="0.0" y="130" width="390" height="15"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="Ecf-RE-cKM"/>
-                                            </constraints>
-                                        </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7V-yG-wJb">
                                             <rect key="frame" x="10" y="75.333333333333329" width="280" height="28.666666666666671"/>
                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
@@ -172,16 +165,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="kQn-Vp-f7x" firstAttribute="top" secondItem="oaE-XY-9IW" secondAttribute="top" id="0c0-8J-ZtX"/>
-                                        <constraint firstItem="AlV-tG-fij" firstAttribute="top" secondItem="eF7-ne-YN7" secondAttribute="bottom" id="7DL-Zw-dE2"/>
-                                        <constraint firstItem="kQn-Vp-f7x" firstAttribute="trailing" secondItem="AlV-tG-fij" secondAttribute="trailing" id="AHf-kU-Q2b"/>
-                                        <constraint firstAttribute="trailing" secondItem="AlV-tG-fij" secondAttribute="trailing" id="GQZ-aE-uSv"/>
+                                        <constraint firstItem="kQn-Vp-f7x" firstAttribute="centerX" secondItem="oaE-XY-9IW" secondAttribute="centerX" id="bST-Pn-7FC"/>
                                         <constraint firstItem="O7V-yG-wJb" firstAttribute="leading" secondItem="oaE-XY-9IW" secondAttribute="leading" constant="10" id="fq2-nc-MeA"/>
                                         <constraint firstItem="eF7-ne-YN7" firstAttribute="top" secondItem="O7V-yG-wJb" secondAttribute="bottom" id="fwg-jW-j0Z"/>
-                                        <constraint firstItem="kQn-Vp-f7x" firstAttribute="leading" secondItem="AlV-tG-fij" secondAttribute="leading" id="hZM-iy-EdZ"/>
-                                        <constraint firstItem="AlV-tG-fij" firstAttribute="leading" secondItem="oaE-XY-9IW" secondAttribute="leading" id="lEt-pc-gdL"/>
+                                        <constraint firstItem="O7V-yG-wJb" firstAttribute="top" secondItem="oaE-XY-9IW" secondAttribute="topMargin" constant="64.333333333333314" id="gk7-wN-VVn"/>
+                                        <constraint firstItem="kQn-Vp-f7x" firstAttribute="leading" secondItem="oaE-XY-9IW" secondAttribute="leadingMargin" constant="-20" id="hey-8P-Rbl"/>
                                         <constraint firstItem="eF7-ne-YN7" firstAttribute="leading" secondItem="oaE-XY-9IW" secondAttribute="leading" constant="10" id="oQe-Um-GYV"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="O7V-yG-wJb" secondAttribute="trailing" constant="80" id="owk-ez-X5S"/>
-                                        <constraint firstAttribute="bottom" secondItem="AlV-tG-fij" secondAttribute="bottom" id="rpa-WK-yOT"/>
                                         <constraint firstAttribute="bottom" secondItem="kQn-Vp-f7x" secondAttribute="bottom" id="xc4-gs-y4c"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="eF7-ne-YN7" secondAttribute="trailing" constant="100" id="zmK-8k-rLF"/>
                                     </constraints>

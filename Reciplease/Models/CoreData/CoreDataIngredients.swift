@@ -8,6 +8,6 @@
 import Foundation
 import CoreData
 
-final class CoreDataIngredients: NSManagedObject {
+ public class CoreDataIngredients: NSManagedObject {
 }
 
