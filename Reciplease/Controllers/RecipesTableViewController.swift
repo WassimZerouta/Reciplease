@@ -18,6 +18,10 @@ class RecipesTableViewController: UITableViewController {
     var stringUrlImage = String()
     var ingredientsLines = [String]()
     var ingredients = [Ingredients]()
+    var favoritesIngredients = NSSet()
+    var ingredientsArray = [String]()
+    
+    var ingredient = String()
     var identifier = "showDetailsRecipe"
     
     override func viewDidLoad() {
@@ -27,7 +31,6 @@ class RecipesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getFavoriteArray()
-        print(favoriteArray.count)
         self.tableView.reloadData()
         
     }
@@ -35,8 +38,11 @@ class RecipesTableViewController: UITableViewController {
     private func getFavoriteArray() {
         RecipeRepository().getRecipes { favoriteArray in
             self.favoriteArray = favoriteArray
-            print(favoriteArray)
-        }
+            self.favoriteArray.removeAll { recipe in
+                recipe.recipeLabel == nil
+                
+            }
+            }
     }
     
  
@@ -45,7 +51,7 @@ class RecipesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if recipeArray.isEmpty { return favoriteArray.count}   else { return recipeArray.count}
+        recipeArray.isEmpty ?  favoriteArray.count : recipeArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,40 +59,35 @@ class RecipesTableViewController: UITableViewController {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell {
             
             // Display recipeArray data if its from SearchViewController, or favoriteArray
-            if recipeArray.isEmpty {ingredientsLines = favoriteArray[indexPath.row].ingredientLines ?? [""] } else {ingredientsLines = recipeArray[indexPath.row].recipe.ingredientLines }
+            ingredientsLines = recipeArray.isEmpty ?  favoriteArray[indexPath.row].ingredientLines ?? [""]  : recipeArray[indexPath.row].recipe.ingredientLines
             
-            var ingredientsArray = [String]()
             if recipeArray.isEmpty {
-                for i in 0..<favoriteArray[indexPath.row].coreDataIngredients!.count {
-                    ingredientsArray.append(   RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoriteArray[indexPath.row].coreDataIngredients as! Set<CoreDataIngredients>)[i].food)
+                favoritesIngredients = favoriteArray[indexPath.row].coreDataIngredients!
+                for i in 0..<favoritesIngredients.count {
+                    ingredient = RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoritesIngredients as! Set<CoreDataIngredients>)[i].food
                 }
-                
             }
-            
             else {
-            ingredients = recipeArray[indexPath.row].recipe.ingredients
-            
-            for i in 0..<ingredients.count {
-                ingredientsArray.append(ingredients[i].food)
+                ingredients = recipeArray[indexPath.row].recipe.ingredients
+                for i in 0..<ingredients.count {
+                    ingredient = ingredients[i].food
+                }
             }
-        }
+            ingredientsArray.append(ingredient)
             cell.ingredientsLabel.text = ingredientsArray.joined(separator: ", ")
-            
-            if recipeArray.isEmpty {cell.titleLabel.text = favoriteArray[indexPath.row].recipeLabel ?? "" } else { cell.titleLabel.text = recipeArray[indexPath.row].recipe.label}
+            print(cell.ingredientsLabel.text as Any)
+            cell.titleLabel.text = recipeArray.isEmpty ? favoriteArray[indexPath.row].recipeLabel ?? "" : recipeArray[indexPath.row].recipe.label
             recipeName = cell.titleLabel.text!
-            if recipeArray.isEmpty {stringUrlImage = favoriteArray[indexPath.row].image ?? "" } else { stringUrlImage = recipeArray[indexPath.row].recipe.image}
+            stringUrlImage = recipeArray.isEmpty ? favoriteArray[indexPath.row].image ?? ""  : recipeArray[indexPath.row].recipe.image
             AF.request(  stringUrlImage ,method: .get).response{ response in
                 switch response.result {
                 case .success(let responseData):
-                    
                     cell.recipeImage.image = UIImage(data: responseData!) ?? UIImage(named: "Spaghetti-bolognaise")
                     self.imageData = responseData!
-                    
                 case .failure(let error):
                     print(error)
                 }
             }
-            
             return cell
         }
         else {
@@ -101,17 +102,22 @@ class RecipesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let nextController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailsRecipeViewController {
+            let recipe: Recipes
             if recipeArray.isEmpty {
                 // Send Recipes Object from favoriteArray to the nextController
-                let recipe = Recipes(label: favoriteArray[indexPath.row].recipeLabel ?? "", image: favoriteArray[indexPath.row].image! , ingredientLines: favoriteArray[indexPath.row].ingredientLines ?? [], ingredients: RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoriteArray[indexPath.row].coreDataIngredients as! Set<CoreDataIngredients>) )
-                nextController.recipe = recipe
-                self.navigationController?.pushViewController(nextController, animated: true)
+                recipe = Recipes(label: favoriteArray[indexPath.row].recipeLabel ?? "", image: favoriteArray[indexPath.row].image! , ingredientLines: favoriteArray[indexPath.row].ingredientLines ?? [], ingredients: RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoriteArray[indexPath.row].coreDataIngredients as! Set<CoreDataIngredients>) )
+                    nextController.recipe = recipe
                 
+                for i in 0..<favoriteArray.count {
+
+                        nextController.favoriteBarButton.tintColor = UIColor.systemGreen
+                        nextController.favoriteRecipe = favoriteArray[i]
+                        
+                    }
             }
             else {
                 // Send Recipes Object from recipeArray to the nextController
-                let recipe = Recipes(label: recipeArray[indexPath.row].recipe.label, image: recipeArray[indexPath.row].recipe.image , ingredientLines: recipeArray[indexPath.row].recipe.ingredientLines, ingredients: recipeArray[indexPath.row].recipe.ingredients)
-                nextController.label = recipeArray[indexPath.row].recipe.label
+               recipe = Recipes(label: recipeArray[indexPath.row].recipe.label, image: recipeArray[indexPath.row].recipe.image , ingredientLines: recipeArray[indexPath.row].recipe.ingredientLines, ingredients: recipeArray[indexPath.row].recipe.ingredients)
                 nextController.recipe = recipe
                 
                 for i in 0..<favoriteArray.count {
@@ -122,9 +128,8 @@ class RecipesTableViewController: UITableViewController {
                         
                     }
                 }
-                
-                self.navigationController?.pushViewController(nextController, animated: true)
             }
+            self.navigationController?.pushViewController(nextController, animated: true)
         }
     }
     
