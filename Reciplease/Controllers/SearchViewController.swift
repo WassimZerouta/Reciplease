@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet weak var searcBarLabel: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         if let ingredient = searcBarLabel.text {
             ingredientsArray.append(ingredient)
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == identifier {
+        if segue.identifier == identifier  {
             if let nextController = segue.destination as? RecipesTableViewController {
                 nextController.recipeArray = self.recipeArray
             }
@@ -51,45 +51,54 @@ class SearchViewController: UIViewController {
         RecipleaseAPIHelper.shared.performRequest(q: stringArray(array: ingredientsArray)) { _ , Recipes in
             DispatchQueue.main.async {
                 self.recipeArray = Recipes!
-                self.performSegue(withIdentifier: self.identifier, sender: nil)
+                if Recipes?.isEmpty == false {
+                    self.performSegue(withIdentifier: self.identifier, sender: nil)}
+                else {
+                    if let nextController = self.storyboard?.instantiateViewController(withIdentifier: "NoRecipe") as? UIViewController {
+                        self.present(nextController, animated: true, completion: nil)
+                    }
+                }
+                
             }
+            
         }
-
     }
-    
-
-    
-    func stringArray(array: [String]) -> String {
         
-       var ingredient = array.joined(separator: "%20+")
-        ingredient.removeAll { Character in
-            Character == ","
+        
+        
+        func stringArray(array: [String]) -> String {
+            
+            var ingredient = array.joined(separator: "%20+")
+            ingredient.removeAll { Character in
+                Character == ","
+            }
+            let array = ingredient.components(separatedBy: " ")
+            ingredient = array.joined(separator: "%20+")
+            let ingredients = "&q=\(ingredient)"
+            return ingredients
         }
-        let array = ingredient.components(separatedBy: " ")
-        ingredient = array.joined(separator: "%20+")
-        let ingredients = "&q=\(ingredient)"
-        return ingredients
-    }
-}
-
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientsArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        var configuration = cell.defaultContentConfiguration()
-        configuration.textProperties.color = .white
-        configuration.text = "-  \(ingredientsArray[indexPath.row])"
-        cell.contentConfiguration = configuration
+    extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return ingredientsArray.count
+        }
         
-        return cell
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = UITableViewCell()
+            var configuration = cell.defaultContentConfiguration()
+            configuration.textProperties.color = .white
+            configuration.textProperties.font = UIFont(name: "Chalkduster", size: 18)!
+            configuration.text = "-  \(ingredientsArray[indexPath.row])"
+            cell.contentConfiguration = configuration
+            
+            return cell
+        }
+        
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            cell.backgroundColor = UIColor.clear
+        }
+        
+        
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-    }
-    
-    
-}
+
