@@ -15,7 +15,8 @@ class DetailsRecipeViewController: UIViewController {
     var recipe = Recipes(label: "", image: "", ingredientLines: [""], ingredients: [])
     // Cause issue
     var favoriteRecipe = Recipe(context: CoreDataStack.shared.viewContext)
- 
+    
+
     
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
@@ -28,17 +29,34 @@ class DetailsRecipeViewController: UIViewController {
         tableView.dataSource = self
         getImage()
         recipeLabel.text = recipe.label
+        layoutSublayers()
         
         if favoriteRecipe.recipeLabel == nil {
-            // TO DO : Implement deleteRecipe(), the call it here
+            // TO DO : Implement deleteRecipe(), then call it here
             RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
         }
-
+    }
+    
+    func layoutSublayers() {
+        
+        let width = recipeImage.bounds.width
+        let height = recipeImage.bounds.height
+        let sHeight:CGFloat = 60.0
+        
+        if recipeImage.layer.sublayers?.first is CAGradientLayer {
+            }
+        else {
+            let gradient = CAGradientLayer()
+            gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+            gradient.frame = CGRect(x: 0, y: height - sHeight, width: width, height: sHeight)
+            recipeImage.layer.insertSublayer(gradient, at: 0)
+        }
     }
     
 
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
         if favoriteRecipe.isFavorite == true {
+            print("OK \(favoriteRecipe.isFavorite)")
             favoriteBarButton.tintColor = UIColor.white
             // TO DO : Implement deleteRecipe(), then call it here
             favoriteRecipe.isFavorite = false
@@ -46,25 +64,13 @@ class DetailsRecipeViewController: UIViewController {
             
         
         }
-        else {
+        else if favoriteRecipe.isFavorite == false {
+            print("KO \(favoriteRecipe.isFavorite)")
             favoriteBarButton.tintColor = UIColor.systemGreen
-            favoriteRecipe.isFavorite = true
             saveRecipe()
         }
     
     
-    }
-    
-    // Get favorite Recipe
-    func getFavoriteArray() {
-        RecipeRepository().getRecipes { favoriteArray in
-            for i in 0..<favoriteArray.count {
-                if (favoriteArray[i].isFavorite && (favoriteArray[i].recipeLabel == recipe.label)) {
-                    favoriteBarButton.tintColor = UIColor.systemGreen
-                }
-            }
- 
-        }
     }
     
     // Save Favorite Recipe
@@ -76,7 +82,7 @@ class DetailsRecipeViewController: UIViewController {
             let ingredientLines = self.recipe.ingredientLines
             
         
-        RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines, isFavorite: true)
+       favoriteRecipe = RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines, isFavorite: true)
     }
     
     // Get recipeImage to display
@@ -106,6 +112,7 @@ extension DetailsRecipeViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = UITableViewCell()
         var configuration = cell.defaultContentConfiguration()
         configuration.textProperties.color = .white
+        configuration.textProperties.font = UIFont(name: "Chalkduster", size: 15)!
         configuration.text = "-  \(recipe.ingredientLines[indexPath.row])"
         cell.contentConfiguration = configuration
         

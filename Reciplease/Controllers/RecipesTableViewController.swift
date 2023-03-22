@@ -19,7 +19,7 @@ class RecipesTableViewController: UITableViewController {
     var ingredientsLines = [String]()
     var ingredients = [Ingredients]()
     var favoritesIngredients = NSSet()
-    var ingredientsArray = [String]()
+    
     
     var ingredient = String()
     var identifier = "showDetailsRecipe"
@@ -33,6 +33,12 @@ class RecipesTableViewController: UITableViewController {
         getFavoriteArray()
         self.tableView.reloadData()
         
+        if recipeArray.isEmpty && favoriteArray.isEmpty {
+            if let nextController = self.storyboard?.instantiateViewController(withIdentifier: "NoRecipe") as? UIViewController {
+                self.present(nextController, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     private func getFavoriteArray() {
@@ -40,8 +46,9 @@ class RecipesTableViewController: UITableViewController {
             self.favoriteArray = favoriteArray
             self.favoriteArray.removeAll { recipe in
                 recipe.recipeLabel == nil
-                
             }
+            self.favoriteArray.reverse()
+            
             }
     }
     
@@ -62,20 +69,25 @@ class RecipesTableViewController: UITableViewController {
             ingredientsLines = recipeArray.isEmpty ?  favoriteArray[indexPath.row].ingredientLines ?? [""]  : recipeArray[indexPath.row].recipe.ingredientLines
             
             if recipeArray.isEmpty {
+                var ingredientsArray = [String]()
                 favoritesIngredients = favoriteArray[indexPath.row].coreDataIngredients!
                 for i in 0..<favoritesIngredients.count {
                     ingredient = RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoritesIngredients as! Set<CoreDataIngredients>)[i].food
+                    ingredientsArray.append(ingredient)
+                    cell.ingredientsLabel.text = ingredientsArray.joined(separator: ", ")
                 }
             }
             else {
+                var ingredientsArray = [String]()
                 ingredients = recipeArray[indexPath.row].recipe.ingredients
                 for i in 0..<ingredients.count {
                     ingredient = ingredients[i].food
+                    ingredientsArray.append(ingredient)
+                    cell.ingredientsLabel.text = ingredientsArray.joined(separator: ", ")
                 }
             }
-            ingredientsArray.append(ingredient)
-            cell.ingredientsLabel.text = ingredientsArray.joined(separator: ", ")
-            print(cell.ingredientsLabel.text as Any)
+            
+            print(ingredient)
             cell.titleLabel.text = recipeArray.isEmpty ? favoriteArray[indexPath.row].recipeLabel ?? "" : recipeArray[indexPath.row].recipe.label
             recipeName = cell.titleLabel.text!
             stringUrlImage = recipeArray.isEmpty ? favoriteArray[indexPath.row].image ?? ""  : recipeArray[indexPath.row].recipe.image
@@ -112,7 +124,6 @@ class RecipesTableViewController: UITableViewController {
 
                         nextController.favoriteBarButton.tintColor = UIColor.systemGreen
                         nextController.favoriteRecipe = favoriteArray[i]
-                        
                     }
             }
             else {

@@ -28,21 +28,9 @@ final class RecipeRepository {
        }
     }
     
-    func getIngredient() -> String {
-       let request: NSFetchRequest<CoreDataIngredients> = CoreDataIngredients.fetchRequest()
-        request.returnsObjectsAsFaults = false
-       do {
-         let coreDataIngredients = try coreDataStack.viewContext.fetch(request)
-           return coreDataIngredients[0].food!
-       } catch {
-           print("error")
-         return ""
-       }
-    }
-    
 
 
-    func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) {
+    func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) -> Recipe {
        let recipe = Recipe(context: coreDataStack.viewContext)
         recipe.image = image
         recipe.recipeLabel = recipeLabel
@@ -52,9 +40,10 @@ final class RecipeRepository {
 
        do {
          try coreDataStack.viewContext.save()
-           print(recipe)
+           return recipe
        } catch {
          print("We were unable to save \(recipeLabel)")
+           return recipe
        }
     }
     
@@ -77,7 +66,6 @@ final class RecipeRepository {
             ingredient.food = ingredients.food
             do {
               try coreDataStack.viewContext.save()
-                print(ingredient)
             } catch {
                 print("We were unable to save \(ingredient.food ?? "the ingredient")")
             }
