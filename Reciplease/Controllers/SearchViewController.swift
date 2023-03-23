@@ -11,6 +11,12 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searcBarLabel: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var yourIngredientsLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    
     
     var ingredientsArray = [String]()
     var recipeArray = [Hits]()
@@ -20,6 +26,20 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        accessibility()
+    }
+    
+   private func accessibility() {
+        searcBarLabel.isAccessibilityElement = true
+        searcBarLabel.accessibilityLabel = "Here, Write the ingredients present in your fridge"
+        addButton.isAccessibilityElement = true
+        addButton.accessibilityLabel = "Click to add your ingredients"
+        clearButton.isAccessibilityElement = true
+        clearButton.accessibilityLabel = "Click to Delete all your ingredients"
+        searchButton.isAccessibilityElement = true
+        searchButton.accessibilityLabel = "Click to find all the recipes available with your ingredients"
+        tableView.isAccessibilityElement = true
+        tableView.accessibilityLabel = "Here, there is the list of your ingredients"
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {

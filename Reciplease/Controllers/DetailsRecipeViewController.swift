@@ -30,13 +30,18 @@ class DetailsRecipeViewController: UIViewController {
         getImage()
         recipeLabel.text = recipe.label
         layoutSublayers()
-        
+        accessibility()
         if favoriteRecipe.recipeLabel == nil {
             // TO DO : Implement deleteRecipe(), then call it here
             RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
         }
     }
     
+    private func accessibility() {
+        favoriteBarButton.isAccessibilityElement = true
+        favoriteBarButton.accessibilityLabel = "Click to add or remove favorite"
+        
+    }
     func layoutSublayers() {
         
         let width = recipeImage.bounds.width

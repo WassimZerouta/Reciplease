@@ -24,8 +24,6 @@ class RecipeTableViewCell: UITableViewCell {
         recipeImage.image = UIImage(named: "Spaghetti-bolognaise")
         titleLabel.text = ""
         ingredientsLabel.text = ""
-        
-   
        }
     
     // ADD THE GRADIENT LAYER ON THE RECIPE IMAGE

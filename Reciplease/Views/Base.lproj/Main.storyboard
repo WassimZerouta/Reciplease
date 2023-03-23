@@ -127,8 +127,12 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="DQB-Jx-pa8"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="5c5-yz-sJp" id="wdd-vi-Vhp"/>
+                        <outlet property="clearButton" destination="Myi-HX-yRK" id="9x6-YI-4l4"/>
                         <outlet property="searcBarLabel" destination="f1K-gE-Tbh" id="PG0-eV-XRW"/>
+                        <outlet property="searchButton" destination="qLN-0l-6Mh" id="dNo-tj-yIH"/>
                         <outlet property="tableView" destination="Knz-6u-Gr3" id="VhU-oy-1Vf"/>
+                        <outlet property="yourIngredientsLabel" destination="XxF-Bk-rze" id="plx-Hk-YA3"/>
                         <segue destination="vQ4-zK-b1l" kind="show" identifier="showRecipes" id="iBs-AS-khY"/>
                     </connections>
                 </viewController>
