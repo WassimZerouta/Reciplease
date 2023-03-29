@@ -12,7 +12,6 @@ class RecipleaseAPIHelper {
     
     static let shared = RecipleaseAPIHelper(session: URLSession(configuration: .default))
     
-    private var task: URLSessionDataTask?
     private var session = URLSession(configuration: .default)
     
     init(session: URLSession) {
@@ -30,12 +29,18 @@ class RecipleaseAPIHelper {
     } 
     
     func performRequest(q: String, completion: @escaping (Bool, [Hits]?) -> Void) {
-        
         if let urlString = getUrl(q: q) {
             _ = AF.request(urlString)
-                .responseDecodable(of: RecipleaseAPIResult.self) { (response) in
-                    guard let result = response.value else { return }
-                    completion( true, result.hits)
+                .responseDecodable(of: RecipleaseAPIResult.self) { response in
+                    switch response.result {
+                    case .success(_):
+                        guard let result = response.value else { return }
+                        completion( true, result.hits)
+                        
+                    case .failure(let error):
+                                print(error)
+                        
+                    }
                 }
         }
     

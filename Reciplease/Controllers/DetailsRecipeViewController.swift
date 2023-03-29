@@ -128,7 +128,4 @@ extension DetailsRecipeViewController: UITableViewDelegate, UITableViewDataSourc
         cell.backgroundColor = UIColor.clear
         
     }
-    
-    
-    
 }
