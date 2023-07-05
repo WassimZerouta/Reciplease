@@ -22,6 +22,8 @@ class SearchViewController: UIViewController {
     var recipeArray = [Hits]()
     let identifier = "showRecipes"
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -29,6 +31,7 @@ class SearchViewController: UIViewController {
         accessibility()
     }
     
+   // Accessibily function
    private func accessibility() {
         searcBarLabel.isAccessibilityElement = true
         searcBarLabel.accessibilityLabel = "Here, Write the ingredients present in your fridge"
@@ -42,20 +45,24 @@ class SearchViewController: UIViewController {
         tableView.accessibilityLabel = "Here, there is the list of your ingredients"
     }
     
+    
+    //Add ingredient(s) in ingredientsArray
     @IBAction func addButtonPressed(_ sender: Any) {
         if let ingredient = searcBarLabel.text {
             ingredientsArray.append(ingredient)
             print(stringArray(array: ingredientsArray))
         }
-        
-        print(ingredientsArray)
+
         tableView.reloadData()
     }
     
+    
+    // Clear ingredients
     @IBAction func clearButtonPressed(_ sender: Any) {
         ingredientsArray.removeAll()
         tableView.reloadData()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == identifier  {
@@ -65,7 +72,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    
+    // Search recipes matching to the ingredients
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         
         RecipleaseAPIHelper.shared.performRequest(q: stringArray(array: ingredientsArray)) { _ , Recipes in
@@ -74,9 +81,7 @@ class SearchViewController: UIViewController {
                 if Recipes?.isEmpty == false {
                     self.performSegue(withIdentifier: self.identifier, sender: nil)}
                 else {
-                    if let nextController = self.storyboard?.instantiateViewController(withIdentifier: "NoRecipe") as? UIViewController {
-                        self.present(nextController, animated: true, completion: nil)
-                    }
+                    self.noRecipeFound()
                 }
                 
             }
@@ -84,8 +89,16 @@ class SearchViewController: UIViewController {
         }
     }
         
+    // Alert if No recipe was found
+    func noRecipeFound() {
+        let alertController = UIAlertController(title: "No recipes found", message: "We couldn't find any recipes matching your search.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
         
         
+    // Stringify the array of ingredients
         func stringArray(array: [String]) -> String {
             
             var ingredient = array.joined(separator: "%20+")
@@ -99,11 +112,15 @@ class SearchViewController: UIViewController {
         }
     }
     
+    
     extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+        
+        // Number of rows
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return ingredientsArray.count
         }
         
+        // Cell configuration
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = UITableViewCell()
             var configuration = cell.defaultContentConfiguration()
@@ -115,6 +132,7 @@ class SearchViewController: UIViewController {
             return cell
         }
         
+        // Define backgroundColor of the cell
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             cell.backgroundColor = UIColor.clear
         }

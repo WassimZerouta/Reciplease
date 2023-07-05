@@ -13,7 +13,6 @@ class DetailsRecipeViewController: UIViewController {
     
     var imageData = Data()
     var recipe = Recipes(label: "", image: "", ingredientLines: [""], ingredients: [])
-    // Cause issue
     var favoriteRecipe = Recipe(context: CoreDataStack.shared.viewContext)
     
 
@@ -32,7 +31,6 @@ class DetailsRecipeViewController: UIViewController {
         layoutSublayers()
         accessibility()
         if favoriteRecipe.recipeLabel == nil {
-            // TO DO : Implement deleteRecipe(), then call it here
             RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
         }
     }
@@ -42,14 +40,14 @@ class DetailsRecipeViewController: UIViewController {
         favoriteBarButton.accessibilityLabel = "Click to add or remove favorite"
         
     }
+    
     func layoutSublayers() {
         
         let width = recipeImage.bounds.width
         let height = recipeImage.bounds.height
         let sHeight:CGFloat = 60.0
         
-        if recipeImage.layer.sublayers?.first is CAGradientLayer {
-            }
+        if recipeImage.layer.sublayers?.first is CAGradientLayer {}
         else {
             let gradient = CAGradientLayer()
             gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
@@ -60,17 +58,14 @@ class DetailsRecipeViewController: UIViewController {
     
 
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
-        if favoriteRecipe.isFavorite == true {
-            print("OK \(favoriteRecipe.isFavorite)")
+        if favoriteRecipe.isFavorite {
             favoriteBarButton.tintColor = UIColor.white
-            // TO DO : Implement deleteRecipe(), then call it here
             favoriteRecipe.isFavorite = false
             RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
             
         
         }
-        else if favoriteRecipe.isFavorite == false {
-            print("KO \(favoriteRecipe.isFavorite)")
+        else if !favoriteRecipe.isFavorite {
             favoriteBarButton.tintColor = UIColor.systemGreen
             saveRecipe()
         }

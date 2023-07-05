@@ -29,7 +29,6 @@ final class RecipeRepository {
     }
     
 
-
     func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) -> Recipe {
        let recipe = Recipe(context: coreDataStack.viewContext)
         recipe.image = image
@@ -51,7 +50,6 @@ final class RecipeRepository {
          coreDataStack.viewContext.delete(recipe)
         do {
           try coreDataStack.viewContext.save()
-            print("OKOK")
         } catch {
           print("ERROR: \(error)")
         }

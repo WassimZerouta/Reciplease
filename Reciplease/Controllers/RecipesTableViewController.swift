@@ -35,15 +35,20 @@ class RecipesTableViewController: UITableViewController {
         super.viewWillAppear(true)
         getFavoriteArray()
         self.tableView.reloadData()
-        
-        if recipeArray.isEmpty && favoriteArray.isEmpty {
-            if let nextController = self.storyboard?.instantiateViewController(withIdentifier: "NoRecipe") as? UIViewController {
-                self.present(nextController, animated: true, completion: nil)
-            }
-        }
-        
+        noFavoriteRecipeAlert()
     }
     
+    // Alert if no favorite recipe
+    private func noFavoriteRecipeAlert() {
+        if recipeArray.isEmpty && favoriteArray.isEmpty {
+            let alertController = UIAlertController(title: "Favorites", message: "You have not added any recipes to your favourites!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(action)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    // Remove recipe if Recipelabel is nil
     private func getFavoriteArray() {
         RecipeRepository().getRecipes { favoriteArray in
             self.favoriteArray = favoriteArray
@@ -55,25 +60,24 @@ class RecipesTableViewController: UITableViewController {
             }
     }
     
- 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+    // Number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recipeArray.isEmpty ?  favoriteArray.count : recipeArray.count
     }
     
+    // Configure cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell {
             
-            // Display recipeArray data if its from SearchViewController, or favoriteArray
+            // Display recipe from data recipeArray or favoriteArray
             ingredientsLines = recipeArray.isEmpty ?  favoriteArray[indexPath.row].ingredientLines ?? [""]  : recipeArray[indexPath.row].recipe.ingredientLines
             
             if recipeArray.isEmpty {
                 var ingredientsArray = [String]()
+                
                 favoritesIngredients = favoriteArray[indexPath.row].coreDataIngredients!
+                
                 for i in 0..<favoritesIngredients.count {
                     ingredient = RecipeRepository().transformCoreDataIngredientToIngredient(ingredients: favoritesIngredients as! Set<CoreDataIngredients>)[i].food
                     ingredientsArray.append(ingredient)
@@ -82,7 +86,9 @@ class RecipesTableViewController: UITableViewController {
             }
             else {
                 var ingredientsArray = [String]()
+                
                 ingredients = recipeArray[indexPath.row].recipe.ingredients
+                
                 for i in 0..<ingredients.count {
                     ingredient = ingredients[i].food
                     ingredientsArray.append(ingredient)
@@ -90,10 +96,12 @@ class RecipesTableViewController: UITableViewController {
                 }
             }
             
-            print(ingredient)
             cell.titleLabel.text = recipeArray.isEmpty ? favoriteArray[indexPath.row].recipeLabel ?? "" : recipeArray[indexPath.row].recipe.label
+            
             recipeName = cell.titleLabel.text!
+            
             stringUrlImage = recipeArray.isEmpty ? favoriteArray[indexPath.row].image ?? ""  : recipeArray[indexPath.row].recipe.image
+            
             AF.request(  stringUrlImage ,method: .get).response{ response in
                 switch response.result {
                 case .success(let responseData):
@@ -111,10 +119,12 @@ class RecipesTableViewController: UITableViewController {
         }
     }
     
+    // Height for row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }
     
+    // When cell is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let nextController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailsRecipeViewController {
             let recipe: Recipes
