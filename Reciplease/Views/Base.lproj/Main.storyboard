@@ -140,40 +140,6 @@
             </objects>
             <point key="canvasLocation" x="3526.1538461538462" y="-375.35545023696682"/>
         </scene>
-        <!--Not Find View Controller-->
-        <scene sceneID="F38-L7-Njg">
-            <objects>
-                <viewController storyboardIdentifier="NoRecipe" id="YLt-az-IWy" customClass="NotFindViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="e81-Kv-n1j">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We didn't find any recipes matching with your search." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wge-4a-idP">
-                                <rect key="frame" x="20" y="67" width="350" height="723"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="chk-98-FNh"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="chk-98-FNh" firstAttribute="bottom" secondItem="Wge-4a-idP" secondAttribute="bottom" constant="20" id="4cM-0h-6e4"/>
-                            <constraint firstItem="Wge-4a-idP" firstAttribute="leading" secondItem="chk-98-FNh" secondAttribute="leading" constant="20" id="CGD-Yn-8uY"/>
-                            <constraint firstItem="chk-98-FNh" firstAttribute="trailing" secondItem="Wge-4a-idP" secondAttribute="trailing" constant="20" id="DqR-y6-YLO"/>
-                            <constraint firstItem="Wge-4a-idP" firstAttribute="top" secondItem="chk-98-FNh" secondAttribute="top" constant="20" id="Xcb-0v-BMG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="gob-Ih-144"/>
-                    <connections>
-                        <outlet property="alertMessageLabel" destination="Wge-4a-idP" id="ath-A2-gPX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xOO-XS-f0s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4529" y="-732"/>
-        </scene>
         <!--Reciplease-->
         <scene sceneID="xCg-U4-hVG">
             <objects>

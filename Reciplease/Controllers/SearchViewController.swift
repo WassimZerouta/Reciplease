@@ -52,7 +52,6 @@ class SearchViewController: UIViewController {
             ingredientsArray.append(ingredient)
             print(stringArray(array: ingredientsArray))
         }
-
         tableView.reloadData()
     }
     
