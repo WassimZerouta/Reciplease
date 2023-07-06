@@ -21,6 +21,7 @@ final class RecipeRepository {
         request.returnsObjectsAsFaults = false
        do {
          let recipes = try coreDataStack.viewContext.fetch(request)
+        print(recipes)
          completion(recipes)
        } catch {
            print("error")
@@ -29,32 +30,48 @@ final class RecipeRepository {
     }
     
 
-    func saveRecipe(image: String, recipeLabel: String, ingredients: [Ingredients], ingredientLines: [String], isFavorite: Bool) -> Recipe {
+    func saveRecipe(recipes: Recipes) {
        let recipe = Recipe(context: coreDataStack.viewContext)
-        recipe.image = image
-        recipe.recipeLabel = recipeLabel
-        recipe.isFavorite = isFavorite
-        recipe.coreDataIngredients = transformIngredient(ingredients: ingredients) as NSSet
-        recipe.ingredientLines = ingredientLines
+        recipe.image = recipes.image
+        recipe.recipeLabel = recipes.label
+        recipe.isFavorite = true
+        recipe.coreDataIngredients = transformIngredient(ingredients: recipes.ingredients) as NSSet
+        recipe.ingredientLines = recipes.ingredientLines
 
        do {
          try coreDataStack.viewContext.save()
-           return recipe
        } catch {
-         print("We were unable to save \(recipeLabel)")
-           return recipe
+           print("We were unable to save \(recipes.label)")
        }
     }
     
-    func deleteRecipes(recipe: Recipe) {
-         coreDataStack.viewContext.delete(recipe)
+    
+    func deleteRecipes(recipeLabel: String) {
+        let fetchRequest: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "recipeLabel == %@", recipeLabel)
+
         do {
-          try coreDataStack.viewContext.save()
+            let recipes = try coreDataStack.viewContext.fetch(fetchRequest)
+            for recipe in recipes {
+                coreDataStack.viewContext.delete(recipe)
+            }
+            try coreDataStack.viewContext.save()
         } catch {
-          print("ERROR: \(error)")
+            print("We were unable to delete \(error)")
         }
     }
     
+     func getFavoriteArray() -> [Recipe] {
+        var favoriteArray: [Recipe] = []
+        RecipeRepository().getRecipes { recipes in
+            favoriteArray = recipes
+            favoriteArray.removeAll { recipe in
+                recipe.recipeLabel == nil
+            }
+             favoriteArray.reverse()
+        }
+        return favoriteArray
+    }
     
     
     private  func transformIngredient(ingredients: [Ingredients]) -> Set<CoreDataIngredients> {

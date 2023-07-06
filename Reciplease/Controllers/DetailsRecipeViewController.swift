@@ -13,10 +13,7 @@ class DetailsRecipeViewController: UIViewController {
     
     var imageData = Data()
     var recipe = Recipes(label: "", image: "", ingredientLines: [""], ingredients: [])
-    var favoriteRecipe = Recipe(context: CoreDataStack.shared.viewContext)
-    
-
-    
+        
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
@@ -30,8 +27,17 @@ class DetailsRecipeViewController: UIViewController {
         recipeLabel.text = recipe.label
         layoutSublayers()
         accessibility()
-        if favoriteRecipe.recipeLabel == nil {
-            RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
+        
+    }
+    
+    @IBAction func favoriteBarButtonPressed(_ sender: Any) {
+        if favoriteBarButton.tintColor == UIColor.systemGreen {
+            favoriteBarButton.tintColor = UIColor.white
+            RecipeRepository().deleteRecipes(recipeLabel: recipe.label)
+        }
+        else {
+            favoriteBarButton.tintColor = UIColor.systemGreen
+            RecipeRepository().saveRecipe(recipes: recipe)
         }
     }
     
@@ -56,44 +62,13 @@ class DetailsRecipeViewController: UIViewController {
         }
     }
     
-
-    @IBAction func favoriteBarButtonPressed(_ sender: Any) {
-        if favoriteRecipe.isFavorite {
-            favoriteBarButton.tintColor = UIColor.white
-            favoriteRecipe.isFavorite = false
-            RecipeRepository().deleteRecipes(recipe: favoriteRecipe)
-            
-        
-        }
-        else if !favoriteRecipe.isFavorite {
-            favoriteBarButton.tintColor = UIColor.systemGreen
-            saveRecipe()
-        }
-    
-    
-    }
-    
-    // Save Favorite Recipe
-    func saveRecipe() {
-        favoriteBarButton.tintColor = UIColor.systemGreen
-            let image = self.recipe.image
-            let recipeLabel = self.recipe.label
-            let ingredients =  self.recipe.ingredients
-            let ingredientLines = self.recipe.ingredientLines
-            
-        
-       favoriteRecipe = RecipeRepository().saveRecipe(image: image, recipeLabel: recipeLabel, ingredients: ingredients, ingredientLines: ingredientLines, isFavorite: true)
-    }
-    
     // Get recipeImage to display
     func getImage() {
         AF.request(  recipe.image ,method: .get).response{ response in
             switch response.result {
             case .success(let responseData):
-                
                 self.recipeImage.image = UIImage(data: responseData!) ?? UIImage(named: "Spaghetti-bolognaise")
-                
-                
+            
             case .failure(let error):
                 print(error)
             }
