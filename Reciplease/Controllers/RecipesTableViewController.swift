@@ -10,9 +10,7 @@ import Alamofire
 
 class RecipesTableViewController: UITableViewController {
     
-    
-    @IBOutlet weak var recipeBanner: UIImageView!
-    
+        
     var recipeArray = [Hits]()
     var favoriteArray: [Recipe] = []
     
