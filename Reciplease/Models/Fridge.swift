@@ -15,7 +15,7 @@ struct Fridge {
         ingredients.removeAll()
     }
     
-    mutating func AddIngredient(ingredient: String) {
+    mutating func addIngredient(ingredient: String) {
         ingredients.append(ingredient)
 
     }

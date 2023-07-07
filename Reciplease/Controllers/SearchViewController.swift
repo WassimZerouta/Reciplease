@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
     //Add ingredient(s) in ingredientsArray
     @IBAction func addButtonPressed(_ sender: Any) {
         if let ingredient = searcBarLabel.text {
-            fridge.AddIngredient(ingredient: ingredient)
+            fridge.addIngredient(ingredient: ingredient)
         }
         tableView.reloadData()
     }
