@@ -11,15 +11,19 @@ struct Fridge {
     
     var ingredients: [String] = []
     
+    // Remove all the ingredients
     mutating func removeAllIngredients() {
         ingredients.removeAll()
     }
     
+    // Add ingredients
     mutating func addIngredient(ingredient: String) {
         ingredients.append(ingredient)
 
     }
     
+    
+    // Returns a string from an array of ingredients
     func ingredientsString() -> String {
         
         var ingredient = ingredients.joined(separator: "%20+")

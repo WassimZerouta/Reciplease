@@ -9,17 +9,23 @@ import XCTest
 @testable import Reciplease
 
 final class RecipleaseTests: XCTestCase {
-
-    func testShouldReturnResponse() {
+    
+    func testGetRecipesSucced() {
         //Given
-        let expectation = XCTestExpectation(description: "Wait for queu change")
+        let apiHelper: APIHelper = MockRecipleaseAPIHelper()
+        
         //When
-        RecipleaseAPIHelper.shared.performRequest(q: "&q=chicken") { success, Recipes in
+        let expectation = XCTestExpectation(description: "Wait for queu change")
+        apiHelper.performRequest(q: "cheese") { success , Recipes in
+            //Then
             XCTAssertTrue(success)
             XCTAssertNotNil(Recipes)
+            XCTAssertEqual(Recipes?.count, 2)
             expectation.fulfill()
+            
+            
         }
-        wait(for: [expectation], timeout: 10)
-}
-
+        wait(for: [expectation], timeout: 0.01)
+        
+    }
 }

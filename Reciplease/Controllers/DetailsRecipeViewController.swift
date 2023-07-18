@@ -30,6 +30,7 @@ class DetailsRecipeViewController: UIViewController {
         
     }
     
+    // Favorite bar button action
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
         if favoriteBarButton.tintColor == UIColor.systemGreen {
             favoriteBarButton.tintColor = UIColor.white
@@ -47,6 +48,7 @@ class DetailsRecipeViewController: UIViewController {
         
     }
     
+    // Add the gradient layer on the image
     func layoutSublayers() {
         
         let width = recipeImage.bounds.width
@@ -79,10 +81,12 @@ class DetailsRecipeViewController: UIViewController {
 
 extension DetailsRecipeViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // Number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recipe.ingredientLines.count
     }
     
+    // Configure cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         var configuration = cell.defaultContentConfiguration()
@@ -94,6 +98,7 @@ extension DetailsRecipeViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
+    // Set background color
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
         

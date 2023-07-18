@@ -12,14 +12,19 @@ final class CoreDataStack {
     
     private let persistentContainerName = "Reciplease"
     
+    // MARK: - Singleton
     static let shared = CoreDataStack()
     
+    // MARK: - Public
+
     var viewContext: NSManagedObjectContext {
         return CoreDataStack.shared.persistentContainer.viewContext
     }
     
     private init() {}
     
+    // MARK: - Private
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores { storeDescription, error in

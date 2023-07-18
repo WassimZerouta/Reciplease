@@ -16,6 +16,7 @@ final class RecipeRepository {
       self.coreDataStack = coreDataStack
     }
     
+    // Fetches recipes from Core Data
     func getRecipes(completion: ([Recipe]) -> Void) {
        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         request.returnsObjectsAsFaults = false
@@ -29,8 +30,10 @@ final class RecipeRepository {
        }
     }
     
-
+    // Saves a recipe to Core Data
     func saveRecipe(recipes: Recipes) {
+        
+        // create entity instance with context
        let recipe = Recipe(context: coreDataStack.viewContext)
         recipe.image = recipes.image
         recipe.recipeLabel = recipes.label
@@ -45,7 +48,7 @@ final class RecipeRepository {
        }
     }
     
-    
+    // Deletes recipes with a specific recipe label from Core Data
     func deleteRecipes(recipeLabel: String) {
         let fetchRequest: NSFetchRequest<Recipe> = Recipe.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "recipeLabel == %@", recipeLabel)
@@ -61,6 +64,7 @@ final class RecipeRepository {
         }
     }
     
+    // Returns an array of favorite recipes sorted in reverse order
      func getFavoriteArray() -> [Recipe] {
         var favoriteArray: [Recipe] = []
         RecipeRepository().getRecipes { recipes in
@@ -73,7 +77,7 @@ final class RecipeRepository {
         return favoriteArray
     }
     
-    
+    // Transforms an array of Ingredients into a Set of CoreDataIngredients
     private  func transformIngredient(ingredients: [Ingredients]) -> Set<CoreDataIngredients> {
         var ingredientArray = Set<CoreDataIngredients>()
         ingredients.forEach { ingredients in
@@ -91,6 +95,7 @@ final class RecipeRepository {
         return ingredientArray
     }
     
+    // Transforms a Set of CoreDataIngredients into an array of Ingredients
     func transformCoreDataIngredientToIngredient(ingredients: Set<CoreDataIngredients>) -> [Ingredients]{
         var ingredientArray = [Ingredients]()
         ingredients.forEach { ingredients in

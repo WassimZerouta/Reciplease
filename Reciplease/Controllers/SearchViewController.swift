@@ -19,8 +19,8 @@ class SearchViewController: UIViewController {
     var fridge: Fridge = Fridge()
     var recipeArray = [Hits]()
     let identifier = "showRecipes"
-    
-    
+    var apiHelper: APIHelper = RecipleaseAPIHelper.shared
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +56,10 @@ class SearchViewController: UIViewController {
     // Search recipes matching to the ingredients
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         
-        RecipleaseAPIHelper.shared.performRequest(q: fridge.ingredientsString()) { _ , Recipes in
+        apiHelper.performRequest(q: fridge.ingredientsString()) { _ , Recipes in
             DispatchQueue.main.async {
                 self.recipeArray = Recipes!
-                if Recipes?.isEmpty == false {
+                if !Recipes!.isEmpty {
                     self.performSegue(withIdentifier: self.identifier, sender: nil)}
                 else {
                     self.noRecipeFound()

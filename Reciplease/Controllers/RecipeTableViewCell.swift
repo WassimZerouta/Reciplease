@@ -13,6 +13,8 @@ class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ingredientsLabel: UILabel!
     
+    
+    // Set up the cell
     func setUpCell(image: UIImage, title: String, ingredients: String) {
         backgroundColor = UIColor.black
         recipeImage.image = image
@@ -26,7 +28,7 @@ class RecipeTableViewCell: UITableViewCell {
         ingredientsLabel.text = ""
        }
     
-    // ADD THE GRADIENT LAYER ON THE RECIPE IMAGE
+    // Add the gradient layer on the image
     override func layoutSublayers(of layer: CALayer) {
         
         let width = self.bounds.width
