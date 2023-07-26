@@ -8,7 +8,12 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
+protocol CoreDataStackProtocol {
+    var viewContext: NSManagedObjectContext { get }
+    var persistentContainer: NSPersistentContainer { get }
+}
+
+final class CoreDataStack: CoreDataStackProtocol {
     
     private let persistentContainerName = "Reciplease"
     
@@ -23,13 +28,36 @@ final class CoreDataStack {
     
     private init() {}
     
-    // MARK: - Private
 
-    private lazy var persistentContainer: NSPersistentContainer = {
+     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores { storeDescription, error in
             if let error = error as? NSError {
                 fatalError("Unresolved error \(error), \(error.userInfo) for \(storeDescription.description)")
+            }
+        }
+        return container
+    }()
+}
+
+final class TestCoreDataStack: CoreDataStackProtocol {
+    
+    private let persistentContainerName = "Reciplease"
+
+    static let shared = TestCoreDataStack()
+    
+    var viewContext: NSManagedObjectContext {
+        return TestCoreDataStack.shared.persistentContainer.viewContext
+    }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let description = NSPersistentStoreDescription()
+        description.url = URL(fileURLWithPath: "/dev/null")
+        let container = NSPersistentContainer(name: persistentContainerName)
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
         return container

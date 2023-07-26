@@ -11,6 +11,7 @@
 		570A198629A27A1A00A8D839 /* RecipleaseAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A198529A27A1A00A8D839 /* RecipleaseAPIHelper.swift */; };
 		570A198829A27A3200A8D839 /* RecipleaseAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A198729A27A3200A8D839 /* RecipleaseAPIResult.swift */; };
 		570A198B29A27BD100A8D839 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 570A198A29A27BD100A8D839 /* Alamofire */; };
+		571AAB672A717E6300246195 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571AAB662A717E6300246195 /* CoreDataTest.swift */; };
 		574709FF299FD2810078611A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574709FE299FD2810078611A /* AppDelegate.swift */; };
 		57470A01299FD2810078611A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A00299FD2810078611A /* SceneDelegate.swift */; };
 		57470A03299FD2810078611A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57470A02299FD2810078611A /* SearchViewController.swift */; };
@@ -43,6 +44,7 @@
 		5708D96229A2AE4E00D463A9 /* RecipesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTableViewController.swift; sourceTree = "<group>"; };
 		570A198529A27A1A00A8D839 /* RecipleaseAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseAPIHelper.swift; sourceTree = "<group>"; };
 		570A198729A27A3200A8D839 /* RecipleaseAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseAPIResult.swift; sourceTree = "<group>"; };
+		571AAB662A717E6300246195 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		574709FB299FD2810078611A /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		574709FE299FD2810078611A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57470A00299FD2810078611A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				577BE32E29D4F2F4001DA88A /* RecipleaseAPIHelperTests.swift */,
 				57AF74C22A580542004F2356 /* FridgeTests.swift */,
+				571AAB662A717E6300246195 /* CoreDataTest.swift */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571AAB672A717E6300246195 /* CoreDataTest.swift in Sources */,
 				57AF74C32A580542004F2356 /* FridgeTests.swift in Sources */,
 				577BE32F29D4F2F4001DA88A /* RecipleaseAPIHelperTests.swift in Sources */,
 			);
@@ -451,6 +455,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KJCJHF4C4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -478,6 +483,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6KJCJHF4C4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Reciplease/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

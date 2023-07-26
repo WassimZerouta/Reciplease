@@ -11,9 +11,8 @@ import Alamofire
 
 class DetailsRecipeViewController: UIViewController {
     
-    var imageData = Data()
     var recipe = Recipes(label: "", image: "", ingredientLines: [""], ingredients: [])
-        
+    
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeLabel: UILabel!
     @IBOutlet weak var favoriteBarButton: UIBarButtonItem!
@@ -34,11 +33,11 @@ class DetailsRecipeViewController: UIViewController {
     @IBAction func favoriteBarButtonPressed(_ sender: Any) {
         if favoriteBarButton.tintColor == UIColor.systemGreen {
             favoriteBarButton.tintColor = UIColor.white
-            RecipeRepository().deleteRecipes(recipeLabel: recipe.label)
+            RecipeRepository(coreDataStack: CoreDataStack.shared).deleteRecipes(recipeLabel: recipe.label)
         }
         else {
             favoriteBarButton.tintColor = UIColor.systemGreen
-            RecipeRepository().saveRecipe(recipes: recipe)
+            RecipeRepository(coreDataStack: CoreDataStack.shared).saveRecipe(recipes: recipe)
         }
     }
     
@@ -70,7 +69,7 @@ class DetailsRecipeViewController: UIViewController {
             switch response.result {
             case .success(let responseData):
                 self.recipeImage.image = UIImage(data: responseData!) ?? UIImage(named: "Spaghetti-bolognaise")
-            
+                
             case .failure(let error):
                 print(error)
             }

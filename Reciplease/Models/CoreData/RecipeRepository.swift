@@ -10,9 +10,9 @@ import CoreData
 
 final class RecipeRepository {
     
-    let coreDataStack: CoreDataStack
+    let coreDataStack: CoreDataStackProtocol
 
-    init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
+    init(coreDataStack: CoreDataStackProtocol) {
       self.coreDataStack = coreDataStack
     }
     
@@ -67,7 +67,7 @@ final class RecipeRepository {
     // Returns an array of favorite recipes sorted in reverse order
      func getFavoriteArray() -> [Recipe] {
         var favoriteArray: [Recipe] = []
-        RecipeRepository().getRecipes { recipes in
+        getRecipes { recipes in
             favoriteArray = recipes
             favoriteArray.removeAll { recipe in
                 recipe.recipeLabel == nil

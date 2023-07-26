@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     var recipeArray = [Hits]()
     let identifier = "showRecipes"
     var apiHelper: APIHelper = RecipleaseAPIHelper.shared
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
